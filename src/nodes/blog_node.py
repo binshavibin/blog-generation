@@ -54,8 +54,8 @@ class BlogNode:
             HumanMessage(translation_prompt.format(current_language=state['current_language'], blog_content=blog_content))
         ]
 
-        translation_content = self.llm.with_structured_output(Blog).invoke(messages)
-        return {"blog":{"title":state['blog']['title'],"content":translation_content.content}}
+        response = self.llm.invoke(messages)
+        return {"blog":{"title":state['blog']['title'],"content":response.content}}
 
     def route(self,state:BlogState):
         return {"current_language":state['current_language']}
@@ -68,6 +68,8 @@ class BlogNode:
             return "hindi"
         elif state['current_language']=="french":
             return "french"
+        elif state['current_language']=="malayalam":
+            return "malayalam"        
         else:
             return state['current_language']
                 

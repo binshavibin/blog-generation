@@ -34,6 +34,7 @@ class GraphBuilder:
         self.graph.add_node("content_generation",self.blog_node_obj.content_generation)
         self.graph.add_node("hindi_translation",lambda state:self.blog_node_obj.translation({**state,"current_language":"hindi"}))
         self.graph.add_node("french_translation",lambda state:self.blog_node_obj.translation({**state,"current_language":"french"}))
+        self.graph.add_node("malayalam_translation",lambda state:self.blog_node_obj.translation({**state,"current_language":"malayalam"}))
         self.graph.add_node("route",self.blog_node_obj.route)
 
         ##edges and conditional edges
@@ -45,11 +46,13 @@ class GraphBuilder:
                                             self.blog_node_obj.route_decision,
                                             {
                                             "hindi":"hindi_translation",
-                                            "french":"french_translation"
+                                            "french":"french_translation",
+                                            "malayalam":"malayalam_translation"
                                             }
                                             )
         self.graph.add_edge("hindi_translation",END)
         self.graph.add_edge("french_translation",END)
+        self.graph.add_edge("malayalam_translation",END)
         return self.graph
 
 
