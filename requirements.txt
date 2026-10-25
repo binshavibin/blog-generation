@@ -6,4 +6,4 @@ langchain_groq
 fastapi
 uvicorn
 watchdog
-langchain-cli[inmem]
+langgraph-cli[inmem]colorama
